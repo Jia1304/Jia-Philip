@@ -53,9 +53,9 @@ int main() {
 
     //main menu loop
     while (1) {
-        printf("Welcome to the Coffee Machine Menu:\n");
-        printf("[1] Choose a specific coffee type\n");
-        printf("[2] Access admin mode (only for operator)\n");
+        printf("Welcome! :\n");
+        printf("[1] Order Coffee\n");
+        printf("[2] Admin Mode access (only for admins)\n");
         printf("[3] Exit\n");
         printf("Choose option: ");
         scanf("%d", &choice);
@@ -73,12 +73,12 @@ int main() {
                 break;
 
             case 3:
-                printf("Thank you...Exiting\n");
+                printf("Thank you for ordering.....exiting\n");
                 //exit the code program
                 return 0;
 
             default:
-                printf("Invalid selection, please try again\n");
+                printf("Invalid, please try again\n");
         }
     }
 }
@@ -88,19 +88,19 @@ void check_ingredients(int type) {
     //ESPRESSO
     if (type == 1) {
         if (coffee_beans < espresso_beans || water < espresso_water) {
-            printf("Espresso Unavailable due to insufficient ingredients.\n");
+            printf("Espresso is no longer available due to insufficient ingredients.\n");
         }
     }
     else if (type == 2) {
     //CAPPUCCINO
         if (coffee_beans < cappuccino_beans || water < cappuccino_water || milk < cappuccino_milk) {
-            printf("Cappuccino Unavailable due to insufficient ingredients.\n");
+            printf("Cappuccino is no longer available due to insufficient ingredients.\n");
         }
     }
     else if (type == 3) {
     //MOCHA
         if (coffee_beans < mocha_beans || water < mocha_water || milk < mocha_milk || chocolate < mocha_chocolate) {
-            printf("Mocha Unavailable due to insufficient ingredients.\n");
+            printf("Mocha is no longer available due to insufficient ingredients.\n");
         }
     }
 }
@@ -114,11 +114,11 @@ void order_coffee() {
     //loop for ordering the coffee
     while (1) {
         printf("\nAvailable Coffee Types:\n");
-        printf("1. -- Espresso -- AED %.2f\n", espresso_price);
-        printf("2. -- Cappuccino -- AED %.2f\n", cappuccino_price);
-        printf("3. -- Mocha -- AED %.2f\n", mocha_price);
+        printf("1. -- ESPRESSO -- AED %.2f\n", espresso_price);
+        printf("2. -- CAPPUCCINO -- AED %.2f\n", cappuccino_price);
+        printf("3. -- MOCHA -- AED %.2f\n", mocha_price);
         printf("0. --Exit --\n");
-        printf("Select the type of coffee type you would like to order: ");
+        printf("Please choose the type of coffee you would like to order: ");
         scanf("%d", &choice);
 
         //exit ordering coffee if user selects 0
@@ -140,7 +140,7 @@ void order_coffee() {
             coffeeprice = mocha_price;
         }
         else {
-            printf("Selected coffee type is unavailable. Please select another.\n");
+            printf("Chosen coffee type is not available at the moment, please select another.\n");
             continue;
         }
 
@@ -166,7 +166,7 @@ void order_coffee() {
             //exit after successful order
             break;
         } else {
-            printf("Order canceled. Please select again.\n");
+            printf("Order canceled. Please choose again.\n");
         }
     }
 }
@@ -178,7 +178,7 @@ void handle_payment(float coffeeprice) {
 
     //loop to handle coin input
     while (totalpaid < coffeeprice) {
-        printf("Insert a 1 dirham or 0.5 dirham coin: ");
+        printf("Insert 1 $ or 0.5 $ coins: ");
         scanf("%f", &payment);
 
         //validate the coin and add it to the total
@@ -195,7 +195,7 @@ void handle_payment(float coffeeprice) {
     //calculate and return change if needed
     float change = totalpaid - coffeeprice;
     if (change > 0) {
-        printf("Your change is AED %.2f\n", change);
+        printf("Your change is $ %.2f\n", change);
     }
     //update total sales
     total_sales += coffeeprice;
@@ -244,7 +244,7 @@ void replenish_ingredients() {
     water = rand() % 600 + 500;
     milk = rand() % 600 + 500;
     chocolate = rand() % 600 + 500;
-    printf("Ingredients replenished successfully\n");
+    printf("Replenished the ingredients!\n");
 }
 
 
@@ -252,10 +252,10 @@ void change_coffee_price() {
     int choice;
     float newprice;
 
-    printf("\nChoose coffee type to change the price:\n");
-    printf("1. Espresso\n");
-    printf("2. Cappuccino\n");
-    printf("3. Mocha\n");
+    printf("\n Select the coffee type you want to change the price of:\n");
+    printf("1. ESPRESSO\n");
+    printf("2. CAPPUCCINO\n");
+    printf("3. MOCHA\n");
     printf("0. Exit\n");
     printf("Select a coffee type: ");
     scanf("%d", &choice);
@@ -266,21 +266,21 @@ void change_coffee_price() {
             printf("Enter new price for Espresso: ");
             scanf("%f", &newprice);
             espresso_price = newprice;
-            printf("Espresso price updated to AED %.2f\n", espresso_price);
+            printf("Updated espresso cost to $ %.2f\n", espresso_price);
             break;
 
         case 2:
             printf("Enter new price for Cappuccino: ");
             scanf("%f", &newprice);
             cappuccino_price = newprice;
-            printf("Cappuccino price updated to AED %.2f\n", cappuccino_price);
+            printf("Updated cappuccino cost $ %.2f\n", cappuccino_price);
             break;
 
         case 3:
             printf("Enter new price for Mocha: ");
             scanf("%f", &newprice);
             mocha_price = newprice;
-            printf("Mocha price updated to AED %.2f\n", mocha_price);
+            printf("Updated mocha cost $ %.2f\n", mocha_price);
             break;
 
         case 0:
@@ -341,7 +341,7 @@ void admin_mode() {
                     break;
 
                 case 0:
-                    printf("Exiting Admin Mode.\n");
+                    printf("Exiting Admin Mode....\n");
                     //exits admin mode
                     return;
 
@@ -352,6 +352,7 @@ void admin_mode() {
     }
     else {
         //shows invalid password input
-        printf("Incorrect password! Access denied.\n");
+        printf("Incorrect password! Denied access \n");
     }
 }
+
